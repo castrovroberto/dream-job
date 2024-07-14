@@ -2,22 +2,22 @@ package tech.yump.jobportal.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.yump.jobportal.entity.UsersType;
-import tech.yump.jobportal.repository.UsersTypeRepository;
+import tech.yump.jobportal.entity.UserType;
+import tech.yump.jobportal.repository.UserTypeRepository;
 
 import java.util.List;
 
 @Service
-public class UsersTypeService {
+public class UserTypeService {
 
-    private final UsersTypeRepository usersTypeRepository;
+    private final UserTypeRepository usersTypeRepository;
 
     @Autowired
-    public UsersTypeService(UsersTypeRepository usersTypeRepository) {
+    public UserTypeService(UserTypeRepository usersTypeRepository) {
         this.usersTypeRepository = usersTypeRepository;
     }
 
-    public List<UsersType> getAll() {
+    public List<UserType> getAll() {
         return usersTypeRepository.findAll();
     }
 

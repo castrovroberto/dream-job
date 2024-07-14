@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users_type_t")
-public class UsersType {
+@Table(name = "user_type_t")
+public class UserType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +14,14 @@ public class UsersType {
 
     private String userTypeName;
 
-    @OneToMany(targetEntity = Users.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
-    private List<Users> users;
+    @OneToMany(targetEntity = User.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
+    private List<User> users;
 
-    public UsersType() {
+    public UserType() {
         // Default constructor
     }
 
-    public UsersType(Long userTypeId, String userTypeName, List<Users> users) {
+    public UserType(Long userTypeId, String userTypeName, List<User> users) {
         this.userTypeId = userTypeId;
         this.userTypeName = userTypeName;
         this.users = users;
@@ -43,17 +43,17 @@ public class UsersType {
         this.userTypeName = userTypeName;
     }
 
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<Users> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
     @Override
     public String toString() {
-        return "UsersType{" +
+        return "UserType{" +
                 "userTypeId=" + userTypeId +
                 ", userTypeName='" + userTypeName + '\'' +
                 '}';

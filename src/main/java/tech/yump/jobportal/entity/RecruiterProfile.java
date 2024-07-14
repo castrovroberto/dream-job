@@ -12,7 +12,7 @@ public class RecruiterProfile {
     @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "user_account_id")
-    private Users user;
+    private User user;
     private String firstName;
     private String lastName;
     private String city;
@@ -27,11 +27,11 @@ public class RecruiterProfile {
         // Default constructor
     }
 
-    public RecruiterProfile(Users user) {
+    public RecruiterProfile(User user) {
         this.user = user;
     }
 
-    public RecruiterProfile(Long userAccountId, Users user, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
+    public RecruiterProfile(Long userAccountId, User user, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
         this.userAccountId = userAccountId;
         this.user = user;
         this.firstName = firstName;
@@ -51,11 +51,11 @@ public class RecruiterProfile {
         this.userAccountId = userAccountId;
     }
 
-    public Users getUserId() {
+    public User getUserId() {
         return user;
     }
 
-    public void setUserId(Users user) {
+    public void setUserId(User user) {
         this.user = user;
     }
 

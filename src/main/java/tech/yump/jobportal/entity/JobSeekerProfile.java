@@ -14,7 +14,7 @@ public class JobSeekerProfile {
     @OneToOne(cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "user_account_id")
-    private Users user;
+    private User user;
 
     private String firstName;
 
@@ -36,19 +36,19 @@ public class JobSeekerProfile {
     private String resume;
 
     @OneToMany(mappedBy = "jobSeekerProfile", cascade = CascadeType.ALL)
-    private List<Skills> skills;
+    private List<Skill> skills;
 
     public JobSeekerProfile() {
         // Default constructor
     }
 
-    public JobSeekerProfile(Users user) {
+    public JobSeekerProfile(User user) {
         this.user = user;
     }
 
     public JobSeekerProfile(
             Long userAccountId,
-            Users user,
+            User user,
             String firstName,
             String lastName,
             String city,
@@ -58,7 +58,7 @@ public class JobSeekerProfile {
             String workAuthorization,
             String employmentType,
             String resume,
-            List<Skills> skills) {
+            List<Skill> skills) {
         this.userAccountId = userAccountId;
         this.user = user;
         this.firstName = firstName;
@@ -81,11 +81,11 @@ public class JobSeekerProfile {
         this.userAccountId = userAccountId;
     }
 
-    public Users getUserId() {
+    public User getUserId() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -161,11 +161,11 @@ public class JobSeekerProfile {
         this.resume = resume;
     }
 
-    public List<Skills> getSkills() {
+    public List<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<Skills> skills) {
+    public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
 

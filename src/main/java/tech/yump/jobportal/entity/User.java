@@ -7,8 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "users_t")
-public class Users {
+@Table(name = "user_t")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +27,9 @@ public class Users {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userTypeId", referencedColumnName = "userTypeId")
-    private UsersType userTypeId;
+    private UserType userTypeId;
 
-    public Users(Long userId, String email, String password, boolean isActive, Date registrationDate, UsersType userTypeId) {
+    public User(Long userId, String email, String password, boolean isActive, Date registrationDate, UserType userTypeId) {
         this.userId = userId;
         this.email = email;
         this.password = password;
@@ -38,7 +38,7 @@ public class Users {
         this.userTypeId = userTypeId;
     }
 
-    public Users() {
+    public User() {
         // Default constructor
     }
 
@@ -82,17 +82,17 @@ public class Users {
         this.registrationDate = registrationDate;
     }
 
-    public UsersType getUserTypeId() {
+    public UserType getUserTypeId() {
         return userTypeId;
     }
 
-    public void setUserTypeId(UsersType userTypeId) {
+    public void setUserTypeId(UserType userTypeId) {
         this.userTypeId = userTypeId;
     }
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "userId=" + userId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +

@@ -3,8 +3,8 @@ package tech.yump.jobportal.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "skills_t")
-public class Skills {
+@Table(name = "skill_t")
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,11 @@ public class Skills {
     @JoinColumn(name = "job_seeker_profile")
     private JobSeekerProfile jobSeekerProfile;
 
-    public Skills() {
+    public Skill() {
         // Default constructor
     }
 
-    public Skills(Long skillId, String name, String experienceLevel, String yearsOfExperience, JobSeekerProfile jobSeekerProfile) {
+    public Skill(Long skillId, String name, String experienceLevel, String yearsOfExperience, JobSeekerProfile jobSeekerProfile) {
         this.skillId = skillId;
         this.name = name;
         this.experienceLevel = experienceLevel;
@@ -71,7 +71,7 @@ public class Skills {
 
     @Override
     public String toString() {
-        return "Skills{" +
+        return "Skill{" +
                 "skillId=" + skillId +
                 ", name='" + name + '\'' +
                 ", experienceLevel='" + experienceLevel + '\'' +
