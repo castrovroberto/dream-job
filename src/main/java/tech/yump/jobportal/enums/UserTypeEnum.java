@@ -2,13 +2,13 @@ package tech.yump.jobportal.enums;
 
 import java.util.Objects;
 
-public enum UserType {
+public enum UserTypeEnum {
     JOB_SEEKER(2L),
     RECRUITER(1L);
 
     private final Long id;
 
-    UserType(Long id) {
+    UserTypeEnum(Long id) {
         this.id = id;
     }
 
@@ -16,8 +16,8 @@ public enum UserType {
         return id;
     }
 
-    public static UserType fromId(Long id) {
-        for (UserType type : values()) {
+    public static UserTypeEnum fromId(Long id) {
+        for (UserTypeEnum type : values()) {
             if (Objects.equals(type.id, id)) {
                 return type;
             }

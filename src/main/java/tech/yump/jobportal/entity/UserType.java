@@ -10,37 +10,37 @@ public class UserType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userTypeId;
+    private Long id;
 
-    private String userTypeName;
+    private String name;
 
-    @OneToMany(targetEntity = User.class, mappedBy = "userTypeId", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = User.class, mappedBy = "userType", cascade = CascadeType.ALL)
     private List<User> users;
 
     public UserType() {
         // Default constructor
     }
 
-    public UserType(Long userTypeId, String userTypeName, List<User> users) {
-        this.userTypeId = userTypeId;
-        this.userTypeName = userTypeName;
+    public UserType(Long id, String name, List<User> users) {
+        this.id = id;
+        this.name = name;
         this.users = users;
     }
 
-    public Long getUserTypeId() {
-        return userTypeId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserTypeId(Long userTypeId) {
-        this.userTypeId = userTypeId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserTypeName() {
-        return userTypeName;
+        return name;
     }
 
-    public void setUserTypeName(String userTypeName) {
-        this.userTypeName = userTypeName;
+    public void setUserTypeName(String name) {
+        this.name = name;
     }
 
     public List<User> getUsers() {
@@ -54,8 +54,8 @@ public class UserType {
     @Override
     public String toString() {
         return "UserType{" +
-                "userTypeId=" + userTypeId +
-                ", userTypeName='" + userTypeName + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

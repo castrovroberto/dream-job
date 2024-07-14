@@ -22,9 +22,9 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        UserType userTypeId = user.getUserTypeId();
+        UserType userType = user.getUserType();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(userTypeId.getUserTypeName()));
+        authorities.add(new SimpleGrantedAuthority(userType.getUserTypeName()));
         return authorities;
     }
 
