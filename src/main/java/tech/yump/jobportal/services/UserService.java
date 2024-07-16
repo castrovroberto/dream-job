@@ -71,15 +71,14 @@ public class UserService {
             String currentPrincipalName = authentication.getName();
             User user = usersRepository.findByEmail(currentPrincipalName).orElseThrow(() -> new IllegalArgumentException("User not found"));
             Long userId = user.getUserId();
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(UserTypeEnum.RECRUITER.name()))) {
+            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(UserTypeEnum.RECRUITER.getName()))) {
                 return recruiterProfileRepository.findById(userId).orElse(new RecruiterProfile());
-            } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(UserTypeEnum.JOB_SEEKER.name()))) {
+            } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(UserTypeEnum.JOB_SEEKER.getName()))) {
                 return jobSeekerProfileRepository.findById(userId).orElse(new JobSeekerProfile());
             } else {
                 throw(new IllegalArgumentException("User not found"));
             }
-        } else {
-            throw new IllegalArgumentException("User not found");
         }
+        return null;
     }
 }

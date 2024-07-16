@@ -26,13 +26,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String username = userDetails.getUsername();
         logger.debug("User {} logged in", username);
-        boolean hasJobSeekerRole = authentication.getAuthorities().stream().anyMatch(authority -> authority.getAuthority().equals(UserTypeEnum.JOB_SEEKER.name()));
-        boolean hasRecruiterRole = authentication.getAuthorities().stream().anyMatch(authority -> authority.getAuthority().equals(UserTypeEnum.RECRUITER.name()));
+        boolean hasJobSeekerRole = authentication.getAuthorities().stream().anyMatch(authority -> UserTypeEnum.JOB_SEEKER.matchesAuthority(authority.getAuthority()));
+        boolean hasRecruiterRole = authentication.getAuthorities().stream().anyMatch(authority -> UserTypeEnum.RECRUITER.matchesAuthority(authority.getAuthority()));
 
         if (hasRecruiterRole || hasJobSeekerRole) {
-            response.sendRedirect("/dashboard");
-        } else {
-            response.sendRedirect("/login");
+            logger.debug("Redirecting to dashboard");
+            response.sendRedirect("/dashboard/");
         }
     }
 }

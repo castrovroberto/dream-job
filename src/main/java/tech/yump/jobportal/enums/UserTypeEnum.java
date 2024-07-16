@@ -24,4 +24,17 @@ public enum UserTypeEnum {
         }
         throw new IllegalArgumentException("Invalid UserType id: " + id);
     }
+
+    public boolean matchesAuthority(String authority) {
+        return authority.equals(this.getName());
+    }
+
+    public String getName() {
+        if (this == JOB_SEEKER) {
+            return "Job Seeker";
+        } else if (this == RECRUITER) {
+            return "Recruiter";
+        }
+        return null;
+    }
 }

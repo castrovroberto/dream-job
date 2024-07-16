@@ -18,7 +18,6 @@ import tech.yump.jobportal.services.CustomUserDetailsService;
 public class WebSecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
-
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Autowired

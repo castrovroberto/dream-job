@@ -13,16 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import tech.yump.jobportal.entity.JobSeekerProfile;
-import tech.yump.jobportal.entity.RecruiterProfile;
 import tech.yump.jobportal.entity.User;
 import tech.yump.jobportal.entity.UserType;
-import tech.yump.jobportal.enums.UserTypeEnum;
 import tech.yump.jobportal.services.UserService;
 import tech.yump.jobportal.services.UserTypeService;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -56,23 +52,15 @@ public class UsersController {
         logger.debug("User registration requested");
         Optional<User> optionalUser = userService.getUserByEmail(user.getEmail());
         if (optionalUser.isPresent()) {
-            logger.debug("Email already exists. Try to login or register with another email.");
-            List<UserType> userType = usersTypeService.getAll();
-            model.addAttribute("getAllTypes", userType);
-            model.addAttribute("user", new User());
             model.addAttribute("error", "Email already exists. Try to login or register with another email.");
+            List<UserType> userTypes = usersTypeService.getAll();
+            model.addAttribute("getAllTypes", userTypes);
+            model.addAttribute("user", new User());
             return "register";
         }
         logger.debug("User registration successful");
-        User savedUser = userService.addNewUser(user);
-
-        if (savedUser.getUserType().getId().equals( UserTypeEnum.JOB_SEEKER.getId()) ){
-            model.addAttribute("profile", new JobSeekerProfile(savedUser));
-        } else if (savedUser.getUserType().getId().equals(UserTypeEnum.RECRUITER.getId())) {
-            model.addAttribute("profile", new RecruiterProfile(savedUser));
-        }
-        model.addAttribute("user", savedUser);
-        return "dashboard";
+        userService.addNewUser(user);
+        return "redirect:/dashboard/";
     }
 
     @GetMapping("/login")

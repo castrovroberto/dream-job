@@ -50,17 +50,6 @@
                                 method="post"
                         >
                             <div class="box-body bozero mx2p">
-                                <!-- Error message display -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <div th:if="${error}" class="alert alert-danger" role="alert">
-                                                <p th:text="${error}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End error message display -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -98,10 +87,10 @@
                                                 class="form-control"
                                                 th:field="*{userType}"
                                         >
-                                            <th:block th:each="userType :${getAllTypes}">
+                                            <th:block th:each="type :${getAllTypes}">
                                                 <option
-                                                        th:text="${userType.userTypeName}"
-                                                        th:value="${userType.id}"
+                                                        th:text="${type.userTypeName}"
+                                                        th:value="${type.id}"
                                                 ></option>
                                             </th:block>
                                         </select>
